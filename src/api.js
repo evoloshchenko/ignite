@@ -34,4 +34,4 @@ const popular_games = `games?key=${API_Key}&dates=${lastYear},${currentDate}&ord
 
 export const popularGamesURL = () => `${base_url}${popular_games}`;
 
-console.log(popularGamesURL());
+
