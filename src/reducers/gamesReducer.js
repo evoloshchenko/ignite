@@ -1,3 +1,4 @@
+
 const initialState = {
   popular: [],
   newGames: [],
@@ -13,5 +14,13 @@ const gamesReducer = (state = initialState, action) => {
       return { ...state };
   }
 };
+
+//ActioN Creator
+const fetchGames = () => {
+  return {
+    type: "FETCH_GAMES",
+  };
+};
+
 
 export default gamesReducer;
