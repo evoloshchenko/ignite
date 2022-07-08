@@ -2,16 +2,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const Game = ({
-  name,
-  platforms,
-  released,
-  playtime,
-  image,
-  ratings,
-  genres,
-}) => {
-  console.log(platforms);
+const Game = ({ name, platforms, released, image, ratings, genres }) => {
   return (
     <StyledGame>
       <img src={image} alt="{name}" />
@@ -19,13 +10,12 @@ const Game = ({
       <p>Platforms:</p>
       <ul>
         {platforms.map((item) => (
-          <li>{item.platform.name}</li>
+          <li>{item.platform.name ? item.platform.name : ""}</li>
         ))}
       </ul>
       <p>Released date {released}</p>
-      <p>Playtime hours: {playtime}</p>
-      <p>Ratings: {ratings[0].percent}</p>
-      <p>Genre: {genres[0].name} </p>
+      <p>Ratings: {ratings[0] ? ratings[0].percent : "no rating"}</p>
+      <p>Genre: {genres[0] ? genres[0].name : "no genre"} </p>
     </StyledGame>
   );
 };
@@ -38,7 +28,7 @@ const StyledGame = styled(motion.div)`
   border-radius: 1rem;
   font-size: 1.5rem;
   ul {
-    list-style-type: none;
+    /* list-style-type: none; */
   }
 
   img {
@@ -46,11 +36,6 @@ const StyledGame = styled(motion.div)`
     height: 50vh;
     object-fit: cover;
     background-position: center;
-    /* object-fit: contain;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto; */
   }
 `;
 
