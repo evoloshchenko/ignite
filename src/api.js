@@ -34,9 +34,13 @@ const popular_games = `games?key=${API_Key}&dates=${lastYear},${currentDate}&ord
 const upcoming_games = `games?key=${API_Key}&dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 const newGames = `games?key=${API_Key}&dates=${lastYear},${currentDate}&ordering=-released&page_size=10}`;
 
- export const popularGamesURL = () => `${base_url}${popular_games}`;
- export const upComingGamesURL = () => `${base_url}${upcoming_games}`;
- export const newGamesURL = () => `${base_url}${newGames}`;
+export const popularGamesURL = () => `${base_url}${popular_games}`;
+export const upComingGamesURL = () => `${base_url}${upcoming_games}`;
+export const newGamesURL = () => `${base_url}${newGames}`;
 
-console.log(popularGamesURL());
-
+//Game Details
+export const gameDetailsURL = (game_id) =>
+  `${base_url}games/${game_id}?key=${API_Key}`;
+//Game ScreenShots
+export const gameScreenshotURL = (game_id) =>
+  `${base_url}games/${game_id}/screenshots?key=${API_Key}`;
