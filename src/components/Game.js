@@ -1,16 +1,26 @@
 //Styling and Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+//Redux
+import { useDispatch } from "react-redux";
+import { loadDetail } from "../actions/detailAction";
 
-const Game = ({ name, platforms, released, image, ratings, genres }) => {
+const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
+  //Load Details
+  const dispatch = useDispatch();
+  const loadDetailHandler = () => {
+    dispatch(loadDetail(id));
+  };
   return (
-    <StyledGame>
+    <StyledGame onClick={loadDetailHandler}>
       <img src={image} alt="{name}" />
       <h3>{name}</h3>
       <p>Platforms:</p>
       <ul>
         {platforms.map((item) => (
-          <li>{item.platform.name ? item.platform.name : ""}</li>
+          <li key={item.platform.id}>
+            {item.platform.name ? item.platform.name : ""}
+          </li>
         ))}
       </ul>
       <p>Released date {released}</p>
