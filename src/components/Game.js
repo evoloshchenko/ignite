@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
+import { smallImage } from "../util";
 
 const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
   //Load Details
@@ -16,7 +17,7 @@ const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
   return (
     <StyledGame onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
-        <img src={image} alt="{name}" />
+        <img src={smallImage(image, 640)} alt="{name}" />
         <h3>{name}</h3>
         <p>Platforms:</p>
         <ul>
