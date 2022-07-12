@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 //Redux
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
+import { Link } from "react-router-dom";
 
 const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
   //Load Details
@@ -13,19 +14,21 @@ const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
   };
   return (
     <StyledGame onClick={loadDetailHandler}>
-      <img src={image} alt="{name}" />
-      <h3>{name}</h3>
-      <p>Platforms:</p>
-      <ul>
-        {platforms.map((item) => (
-          <li key={item.platform.id}>
-            {item.platform.name ? item.platform.name : ""}
-          </li>
-        ))}
-      </ul>
-      <p>Released date {released}</p>
-      <p>Ratings: {ratings[0] ? ratings[0].percent : "no rating"}</p>
-      <p>Genre: {genres[0] ? genres[0].name : "no genre"} </p>
+      <Link to={`/game/${id}`}>
+        <img src={image} alt="{name}" />
+        <h3>{name}</h3>
+        <p>Platforms:</p>
+        <ul>
+          {platforms.map((item) => (
+            <li key={item.platform.id}>
+              {item.platform.name ? item.platform.name : ""}
+            </li>
+          ))}
+        </ul>
+        <p>Released date {released}</p>
+        <p>Ratings: {ratings[0] ? ratings[0].percent : "no rating"}</p>
+        <p>Genre: {genres[0] ? genres[0].name : "no genre"} </p>
+      </Link>
     </StyledGame>
   );
 };
@@ -37,6 +40,7 @@ const StyledGame = styled(motion.div)`
   padding: 0rem 2.5rem 0rem 2.5rem;
   border-radius: 1rem;
   font-size: 1.5rem;
+  cursor: pointer;
   ul {
     /* list-style-type: none; */
   }

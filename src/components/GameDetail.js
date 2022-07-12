@@ -10,26 +10,26 @@ const GameDetail = () => {
   return (
     <CardShadow>
       <Detail>
-        <div className="stats">
+        <Stats>
           <div className="rating">
-            <h3>{game.name}</h3>
-            <p>Rating: {game.rating}</p>
+            <h3 className="title">{game.name}</h3>
+            <p className="rate">Rating: {game.rating} </p>
           </div>
-          <div className="info">
+          <Info>
             <h3>Platforms</h3>
-            <div className="platforms">
+            <Platforms>
               {game.platforms?.map((item) => (
                 <h3 key={item.platform.id}>{item.platform.name}</h3>
               ))}
-            </div>
-          </div>
-        </div>
-        <div className="media">
+            </Platforms>
+          </Info>
+        </Stats>
+        <Media>
           <img src={game.background_image} alt={game.background_image} />
-        </div>
-        <div className="description">
+        </Media>
+        <Description>
           <p>{game.description_raw}</p>
-        </div>
+        </Description>
         <div className="gallery">
           {screen.results?.map((screen) => (
             <img src={screen.image} key={screen.id} alt={screen.image} />
@@ -62,7 +62,7 @@ const CardShadow = styled(motion.div)`
 const Detail = styled(motion.div)`
   width: 80%;
   border-radius: 1rem;
-  padding: 2rem 20rem;
+  padding: 2rem 5rem;
   background: white;
   position: absolute;
   left: 10%;
@@ -70,6 +70,48 @@ const Detail = styled(motion.div)`
   img {
     width: 100%;
   }
+  h3.title {
+    font-size: 2rem;
+    font-family: "Abril Fatface", cursive;
+    font-weight: lighter;
+  }
+  p.rate {
+    font-size: 1.2rem;
+    text-decoration: underline #010161;
+  }
+`;
+
+const Stats = styled(motion.div)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Info = styled(motion.div)`
+  text-align: center;
+`;
+
+const Platforms = styled(motion.div)`
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+  img {
+    margin: 3rem;
+  }
+`;
+
+const Media = styled(motion.div)`
+  margin-top: 5rem;
+  img {
+    width: 100%;
+  }
+`;
+
+const Description = styled(motion.div)`
+  margin: 5rem 0rem;
 `;
 
 export default GameDetail;
