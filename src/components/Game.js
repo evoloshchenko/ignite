@@ -10,6 +10,7 @@ const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
   //Load Details
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
+    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
   return (
