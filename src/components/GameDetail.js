@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux/es/exports";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
+//Images
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import nintendo from "../img/nintendo.svg";
+import xbox from "../img/xbox.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
 
 const GameDetail = ({ pathId }) => {
   const history = useNavigate();
@@ -15,6 +22,32 @@ const GameDetail = ({ pathId }) => {
     if (element.classList.contains("shadow")) {
       document.body.style.overflow = "auto";
       history("/");
+    }
+  };
+
+  //Get Platform Images
+  const getPlatform = (platform) => {
+    switch (platform) {
+      case "PlayStation 4":
+        return playstation;
+      case "PlayStation 5":
+        return playstation;
+      case "Xbox One":
+        return xbox;
+      case "Xbox Series S/X":
+        return xbox;
+      case "PC":
+        return steam;
+      case "Nintendo 3DS":
+        return nintendo;
+      case "Nintendo Switch":
+        return nintendo;
+      case "macOS":
+        return apple;
+      case "iOS":
+        return apple;
+      default:
+        return gamepad;
     }
   };
   //Data
@@ -33,7 +66,11 @@ const GameDetail = ({ pathId }) => {
                 <h3>Platforms</h3>
                 <Platforms>
                   {game.platforms?.map((item) => (
-                    <h3 key={item.platform.id}>{item.platform.name}</h3>
+                    <img
+                      className="icons"
+                      key={item.platform.id}
+                      src={getPlatform(item.platform.name)}
+                    ></img>
                   ))}
                 </Platforms>
               </Info>
@@ -72,7 +109,11 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 5;
+  img.icons {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
