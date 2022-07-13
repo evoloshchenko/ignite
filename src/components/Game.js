@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
 const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
+  const stringPathId = id.toString();
   //Load Details
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
@@ -15,9 +16,13 @@ const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
     dispatch(loadDetail(id));
   };
   return (
-    <StyledGame onClick={loadDetailHandler}>
+    <StyledGame layoutId={stringPathId} onClick={loadDetailHandler}>
       <Link to={`/game/${id}`}>
-        <img src={smallImage(image, 640)} alt="{name}" />
+        <motion.img
+          layoutId={`image ${stringPathId}`}
+          src={smallImage(image, 640)}
+          alt="{name}"
+        />
         <h3>{name}</h3>
         <p>Platforms:</p>
         <ul>
@@ -44,7 +49,7 @@ const StyledGame = styled(motion.div)`
   font-size: 1.5rem;
   cursor: pointer;
   ul {
-    /* list-style-type: none; */
+    color: black;
   }
 
   img {
@@ -52,6 +57,9 @@ const StyledGame = styled(motion.div)`
     height: 50vh;
     object-fit: cover;
     background-position: center;
+  }
+  p {
+    color: black;
   }
 `;
 

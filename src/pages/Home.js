@@ -8,13 +8,13 @@ import Game from "../components/Game";
 
 //Styling and Animation
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
 const Home = () => {
   //Get the current Location
   const location = useLocation();
-  const pathID = location.pathname.split("/")[2];
+  const pathId = location.pathname.split("/")[2];
   //Fetch Games
   const dispatch = useDispatch();
   useEffect(() => {
@@ -24,58 +24,62 @@ const Home = () => {
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
   return (
     <GameList>
-      {pathID && <GameDetail />}
-      <h2>Upcoming Games</h2>
-      <Games>
-        {upcoming.map((game) => (
-          <Game
-            key={game.id}
-            name={game.name}
-            released={game.released}
-            platforms={game.platforms}
-            playtime={game.playtime}
-            id={game.id}
-            image={game.background_image}
-            ratings={game.ratings}
-            genres={game.genres}
-            reviews={game.reviews_count}
-          />
-        ))}
-      </Games>
-      <h2>Popular Games</h2>
-      <Games>
-        {popular.map((game) => (
-          <Game
-            key={game.id}
-            name={game.name}
-            released={game.released}
-            platforms={game.platforms}
-            playtime={game.playtime}
-            id={game.id}
-            image={game.background_image}
-            ratings={game.ratings}
-            genres={game.genres}
-            reviews={game.reviews_count}
-          />
-        ))}
-      </Games>
-      <h2>New Games</h2>
-      <Games>
-        {newGames.map((game) => (
-          <Game
-            key={game.id}
-            name={game.name}
-            released={game.released}
-            platforms={game.platforms}
-            playtime={game.playtime}
-            id={game.id}
-            image={game.background_image}
-            ratings={game.ratings}
-            genres={game.genres}
-            reviews={game.reviews_count}
-          />
-        ))}
-      </Games>
+      <LayoutGroup type="crossfade">
+        <AnimatePresence>
+          {pathId && <GameDetail pathId={pathId} />}
+        </AnimatePresence>
+        <h2>Upcoming Games</h2>
+        <Games>
+          {upcoming.map((game) => (
+            <Game
+              key={game.id}
+              name={game.name}
+              released={game.released}
+              platforms={game.platforms}
+              playtime={game.playtime}
+              id={game.id}
+              image={game.background_image}
+              ratings={game.ratings}
+              genres={game.genres}
+              reviews={game.reviews_count}
+            />
+          ))}
+        </Games>
+        <h2>Popular Games</h2>
+        <Games>
+          {popular.map((game) => (
+            <Game
+              key={game.id}
+              name={game.name}
+              released={game.released}
+              platforms={game.platforms}
+              playtime={game.playtime}
+              id={game.id}
+              image={game.background_image}
+              ratings={game.ratings}
+              genres={game.genres}
+              reviews={game.reviews_count}
+            />
+          ))}
+        </Games>
+        <h2>New Games</h2>
+        <Games>
+          {newGames.map((game) => (
+            <Game
+              key={game.id}
+              name={game.name}
+              released={game.released}
+              platforms={game.platforms}
+              playtime={game.playtime}
+              id={game.id}
+              image={game.background_image}
+              ratings={game.ratings}
+              genres={game.genres}
+              reviews={game.reviews_count}
+            />
+          ))}
+        </Games>
+      </LayoutGroup>
     </GameList>
   );
 };

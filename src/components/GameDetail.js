@@ -6,7 +6,7 @@ import { useSelector } from "react-redux/es/exports";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
 
-const GameDetail = () => {
+const GameDetail = ({ pathId }) => {
   const history = useNavigate();
 
   //Exit Detail
@@ -23,7 +23,7 @@ const GameDetail = () => {
     <>
       {!isLoading && (
         <CardShadow className="shadow" onClick={exitDetailHandler}>
-          <Detail>
+          <Detail layoutId={pathId}>
             <Stats>
               <div className="rating">
                 <h3 className="title">{game.name}</h3>
@@ -39,7 +39,8 @@ const GameDetail = () => {
               </Info>
             </Stats>
             <Media>
-              <img
+              <motion.img
+                layoutId={`image ${pathId}`}
                 src={smallImage(game.background_image, 1280)}
                 alt={game.background_image}
               />
@@ -71,6 +72,7 @@ const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
   &::-webkit-scrollbar {
     width: 0.5rem;
   }
