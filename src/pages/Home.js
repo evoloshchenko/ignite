@@ -39,7 +39,7 @@ const Home = () => {
               playtime={game.playtime}
               id={game.id}
               image={game.background_image}
-              ratings={game.ratings}
+              rating={game.rating}
               genres={game.genres}
               reviews={game.reviews_count}
             />

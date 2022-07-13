@@ -7,7 +7,7 @@ import { loadDetail } from "../actions/detailAction";
 import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
-const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
+const Game = ({ name, platforms, released, image, rating, genres, id }) => {
   const stringPathId = id.toString();
   //Load Details
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Game = ({ name, platforms, released, image, ratings, genres, id }) => {
           ))}
         </ul>
         <p>Released date {released}</p>
-        <p>Ratings: {ratings[0] ? ratings[0].percent : "no rating"}</p>
+        <p>Ratings: {rating}</p>
         <p>Genre: {genres[0] ? genres[0].name : "no genre"} </p>
       </Link>
     </StyledGame>
